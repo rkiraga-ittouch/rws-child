@@ -12,11 +12,9 @@
 </div>
 <script>
     console.log('['+document.location.hostname+'] 🍪 Cookies visible to JavaScript at page load: ' + document.cookie);
+    
     function doThingsWithCookies() {
-        console.log("Read cookies from main page:" + document.cookie);
-        console.log("Trying to set mainCookie:");
-        document.cookie = "mainCookie=" + new Date().toLocaleString();
-        console.log("Read againg cookies:" + document.cookie);
+        console.log("Read cookies:" + document.cookie);
     }
 
     async function handleCookieAccess() {
