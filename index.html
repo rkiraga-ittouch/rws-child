@@ -11,6 +11,7 @@
     <button onclick="handleCookieAccess()">Click me to try to get cookies(results in console)</button>
 </div>
 <script>
+    console.log('['+document.location.hostname+'] 🍪 Cookies visible to JavaScript at page load: ' + document.cookie);
     function doThingsWithCookies() {
         console.log("Read cookies from main page:" + document.cookie);
         console.log("Trying to set mainCookie:");
