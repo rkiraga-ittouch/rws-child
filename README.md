@@ -19,12 +19,6 @@ W standardowym przypadku, przy wyłączonych 3rd party cookies, iframe nie uzysk
 Api SAA pozwala na sprawdzenie czy obecnie taki dostęp jest udzielony oraz na wysłanie żądania do jego uzyskania.
 Demo pokazuje, że po uzyskaniu zgody (zapytanie + ewentualnie wymagany user-gesture - np. kliknięcie) może odczytać plik cookie.
 
-Klikamy button "Click me to try to get cookies..."
-Jeśli to wymagane, pojawi się drugi przycisk "permission trigger button", który również należy kliknąć.
-
-Rezultatem jest udzielenie dostępu do storage przeglądarki. W consolu logu można zaobserwować, że rzeczywiście możemy 
-ciasteczko "mainCookie".
-
 ### **Demo:**
 
 Należy wejść najpierw na stronę https://rkiraga-itt.github.io/rws-main/ i kliknąć pierwszy button w celu utworzenia ciasteczka.
@@ -32,6 +26,11 @@ Należy wejść najpierw na stronę https://rkiraga-itt.github.io/rws-main/ i kl
 Następnie na stronie: https://rkiraga-ittouch.github.io/rws-child/
 odpalamy narzędzia deweloperskie. Możemy zaobserwować, że strony child oraz iframe nie mają dostępu do ciasteczka z domeny main.
 
+Klikamy button "Click me to try to get cookies..."
+Jeśli to wymagane, pojawi się drugi przycisk "permission trigger button", który również należy kliknąć.
+
+Rezultatem jest udzielenie dostępu do storage przeglądarki. W consolu logu można zaobserwować, że rzeczywiście możemy
+odczytać ciasteczko "mainCookie".
 
 ## **2. Case 2 - strona próbuje pobrać resource wymagający cookiesa z innej domeny.**
 
