@@ -26,7 +26,7 @@
   
   const reqStorageAccess = ('requestStorageAccessFor' in document);
 
-  function nextSteps() {
+  function askForPermissions() {
     // If storage access is not enabled, we will need to request it.
     // Check the storage access permission to see if that requires a user gesture or can be automatically granted
     navigator.permissions.query({name: 'top-level-storage-access', requestedOrigin: 'https://rkiraga-itt.github.io/rws-main'}).then(res => {
