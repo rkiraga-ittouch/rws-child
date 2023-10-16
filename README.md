@@ -48,3 +48,7 @@ Przycisk pozwala na wysłanie żądania do przeglądarki o uzyskanie dostępu do
 Jeśli to wymagane, dodatkowo tworzony jest kolejny przycisk, który pozwala na interkacje użytkownika, należy go kliknąć.
 
 Po uzyskaniu dostępu do storage, przy kolejnym wysłaniu requestu do innej domeny, cookie jest dołączany.
+
+Repo:
+https://github.com/rkiraga-itt/rws-main/blob/main/index.html
+https://github.com/rkiraga-ittouch/rws-child/blob/main/index.html
