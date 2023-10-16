@@ -1,3 +1,4 @@
+
 # Related website sets demo
 
 Komenda do uruchomienia przeglądarki - odpowienie flagi i zbiór powiązanych domen:
@@ -6,7 +7,10 @@ Komenda do uruchomienia przeglądarki - odpowienie flagi i zbiór powiązanych d
 --use-first-party-set="{\"primary\": \"https://rkiraga-itt.github.io/rws-main\", \"associatedSites\": [\"https://rkiraga-ittouch.github.io/rws-child\"]}" \  
 https://rkiraga-ittouch.github.io/rws-child`
 
-Demo składa się z dwóch prostych stron zahostowanych na githubpages, pokazują działanie dwóch metod nowego API `Storage Access API`
+Demo składa się z dwóch prostych stron zahostowanych na githubpages, pokazują działanie dwóch metod nowego API `Storage Access API`:
+
+https://github.com/rkiraga-itt/rws-main/blob/main/index.html
+https://github.com/rkiraga-ittouch/rws-child/blob/main/index.html
 
 ## **1. Case 1 - zagnieżdzony iframe który jest w innej domenie.**
 
@@ -49,8 +53,3 @@ Jeśli to wymagane, dodatkowo tworzony jest kolejny przycisk, który pozwala na 
 
 Po uzyskaniu dostępu do storage, przy kolejnym wysłaniu requestu do innej domeny, cookie jest dołączany.
 
-Repo:
-
-https://github.com/rkiraga-itt/rws-main/blob/main/index.html
-
-https://github.com/rkiraga-ittouch/rws-child/blob/main/index.html
