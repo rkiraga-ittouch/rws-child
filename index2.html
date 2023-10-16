@@ -4,16 +4,71 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍪</text></svg>"/>
 <title>case 2</title>
-<button onclick="checkCookie()">getResourceFromOtherDomain</button>  
+<p>Sent first request for resource from other domain when page loaded</p>
+<script>loadResource();</script>  
+
+<button onclick="askForPermissions()">Ask for storage access for specific domain and send request again</button>  
+<button type="button" class="click-for-cookies" style="display: none">🍪 Click to proceed getting permission</button>
+<p>Sent again using this button: (cookies should be included when access granted)</p>
+<button onclick="loadResource()">send again</button>  
 <script>
-  function checkCookie() {
+  function loadResource() {
     fetch('https://rkiraga-itt.github.io/rws-main/resource.json', {
         method: 'GET',
-        // credentials: 'include'
+        credentials: 'include'
       })
       .then((response) => response.json())
       .then((json) => {
       // Do something
       });
+  }
+  
+  const reqStorageAccess = ('requestStorageAccessFor' in document);
+
+  function nextSteps() {
+    // If storage access is not enabled, we will need to request it.
+    // Check the storage access permission to see if that requires a user gesture or can be automatically granted
+    navigator.permissions.query({name: 'top-level-storage-access', requestedOrigin: 'https://rkiraga-itt.github.io/rws-main'}).then(res => {
+      console.log('['+document.location.hostname+'] 1. Check if the top-level-storage-access permission has been granted');
+      console.log('['+document.location.hostname+'] navigator.permissions.query({name: \'top-level-storage-access\', requestedOrigin: \'https://rkiraga-itt.github.io/rws-main\'}).then(res => console.log(res.state)) → ' + res.state);
+
+      if (res.state === 'granted') {
+        console.log('['+document.location.hostname+'] permissions already granted');
+
+        // Request storage access without any user gesture
+        if ('requestStorageAccessFor' in document) {
+          document.requestStorageAccessFor('https://rkiraga-itt.github.io/rws-main').then(
+            res => {
+              console.log('['+document.location.hostname+'] 2.b. Storage-access permission granted, immediately request storage access.');
+              console.log('['+document.location.hostname+'] document.requestStorageAccessFor(\'https://rkiraga-itt.github.io/rws-main\').then(res => {…}) → success');
+              loadResource();
+            },
+            err => {
+              console.log('['+document.location.hostname+'] 2.b. Storage-access permission granted, immediately request storage access.');
+              console.log('['+document.location.hostname+'] requestStorageAccessFor(\'https://rkiraga-itt.github.io/rws-main\').then(res => {…}, err => {…}) → ERROR:', err);
+            }
+          );
+        }
+      } else if (res.state === 'prompt') {
+        console.log('['+document.location.hostname+'] Storage-access prompt');
+      }
+    });
+    
+    document.querySelector('.click-for-cookies').style.display = "block";
+    document.querySelector('.click-for-cookies').addEventListener('click', () => {
+      if ('requestStorageAccess' in document) {
+        document.requestStorageAccessFor('https://rkiraga-itt.github.io/rws-main').then(
+            res => {
+              console.log('['+document.location.hostname+'] 2.a. Request storage access after user gesture, e.g. this button click.');
+              console.log('['+document.location.hostname+'] document.requestStorageAccessFor(\'https://rkiraga-itt.github.io/rws-main\').then(res => {…}) → success');
+              loadResource();
+            },
+            err => {
+              console.log('['+document.location.hostname+'] 2.a. Request storage access after user gesture, e.g. this button click.');
+              console.log('['+document.location.hostname+'] requestStorageAccessFor(\'https://rkiraga-itt.github.io/rws-main\').then(res => {…}, err => {…}) → ERROR:', err);
+            }
+        );
+      }
+    });
   }
 </script>
