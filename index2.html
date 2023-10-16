@@ -5,7 +5,6 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍪</text></svg>"/>
 <title>case 2</title>
 <p>Sent first request for resource from other domain when page loaded</p>
-<script>loadResource();</script>  
 
 <button onclick="askForPermissions()">Ask for storage access for specific domain and send request again</button>  
 <button type="button" class="click-for-cookies" style="display: none">🍪 Click to proceed getting permission</button>
@@ -22,6 +21,8 @@
       // Do something
       });
   }
+
+  loadResource();
   
   const reqStorageAccess = ('requestStorageAccessFor' in document);
 
